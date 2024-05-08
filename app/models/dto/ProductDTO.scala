@@ -1,7 +1,6 @@
 package models.dto
 
 import models.{Product, ProductItem}
-import models.services.converter.ProductItemMapper
 import play.api.libs.json.{Json, Reads, Writes}
 
 case class ProductDTO(id: String, title: String, description: String, items: List[ProductItemDTO] = List())

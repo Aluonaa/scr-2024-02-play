@@ -1,7 +1,6 @@
 package models
 
 import models.dto.ProductItemDTO
-import models.services.converter.ProductItemMapper.dtoToProductItem
 
 case class ProductItem(id: String, price: Int, count: Int, availability: Boolean, product: Product)
 

@@ -7,8 +7,8 @@ import scala.collection.mutable
 
 class ProductRepositoryImpl extends ProductRepository{
 
-  var productRepository = mutable.HashMap.empty[String, Product]
-  var productItemRepository = mutable.HashMap.empty[String, ProductItem]
+  val productRepository = mutable.HashMap.empty[String, Product]
+  val productItemRepository = mutable.HashMap.empty[String, ProductItem]
 
   override def insert(product: Product, itemList: List[ProductItem]): Product = {
     productRepository.put(product.id, product)

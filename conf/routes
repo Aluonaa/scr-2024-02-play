@@ -23,5 +23,5 @@ POST /login                    controllers.IndexController.loginFormSubmit()
 
 POST   /products               controllers.ProductController.insert()
 GET    /products               controllers.ProductController.getAll()
-DELETE /products/:id             controllers.ProductController.delete(id)
+DELETE /products/:id           controllers.ProductController.delete(id)
 GET    /products/:title        controllers.ProductController.getByTitle(title)

@@ -136,12 +136,8 @@ object IndexController extends Controller{
       dto =>
         // some logging logic
         Redirect(routes.IndexController.index())
-          .withSession("email" -> dto.email)
+          .withSession("userId" -> dto.email)
     )
   }
-
-
-
-
 }
 

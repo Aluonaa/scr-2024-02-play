@@ -1,15 +1,13 @@
 package controllers
 
+import com.google.inject.Inject
 import models.dto.ProductDTO
-import models.services.Impl.ProductServiceImpl
-import models.services.ProductService
+import models.services.{ProductService}
 import models.services.response.BaseResponseDTO
 import play.api.libs.json.Json
-import play.api.mvc.{Action, AnyContent, Controller}
+import play.api.mvc.{Action, AnyContent}
 
-object ProductController extends Controller{
-
-  private val productService: ProductService = new ProductServiceImpl()
+class ProductController @Inject()(val productService: ProductService) extends Authorization {
 
   def insert(): Action[ProductDTO] = Action(parse.json[ProductDTO]) { rc =>
     val productDTO = rc.body
@@ -17,16 +15,16 @@ object ProductController extends Controller{
     Ok(Json.toJson(result))
   }
 
-  def getByTitle(title: String): Action[AnyContent] = Action {
+  def getByTitle(title: String): Action[AnyContent] = authorize{
     val result: BaseResponseDTO[List[ProductDTO]] = productService.getByTitle(title)
     Ok(Json.toJson(result))
   }
 
-  def getAll(): Action[AnyContent] = Action {
+  def getAll(): Action[AnyContent] = authorize{
     val result: BaseResponseDTO[List[ProductDTO]] = productService.getAll()
     Ok(Json.toJson(result))
   }
-  def delete(id: String): Action[AnyContent] = Action {
+  def delete(id: String): Action[AnyContent] = authorize{
     val result: BaseResponseDTO[ProductDTO] = productService.delete(id)
     Ok(Json.toJson(result))
   }

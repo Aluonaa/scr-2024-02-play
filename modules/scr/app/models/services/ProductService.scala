@@ -1,11 +1,18 @@
-package models.services.Impl
+package models.services
 
+import models.{Product, ProductItem}
 import models.dto.ProductDTO
-import models.services.ProductService
 import models.services.constants.AppConstants
 import models.services.response.BaseResponseDTO
-import models.{Product, ProductItem}
 import repository.impl.ProductRepositoryImpl
+
+trait ProductService {
+
+  def insert(productDTO: ProductDTO): BaseResponseDTO[ProductDTO]
+  def delete(id: String): BaseResponseDTO[ProductDTO]
+  def getByTitle(title: String): BaseResponseDTO[List[ProductDTO]]
+  def getAll(): BaseResponseDTO[List[ProductDTO]]
+}
 
 class ProductServiceImpl extends ProductService {
 

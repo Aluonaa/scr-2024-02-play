@@ -1,10 +1,12 @@
 package models.services
 
+import com.google.inject.Inject
 import models.{Product, ProductItem}
 import models.dto.ProductDTO
 import models.services.constants.AppConstants
 import models.services.response.BaseResponseDTO
-import repository.impl.ProductRepositoryImpl
+import repository.ProductRepository
+
 
 trait ProductService {
 
@@ -14,9 +16,7 @@ trait ProductService {
   def getAll(): BaseResponseDTO[List[ProductDTO]]
 }
 
-class ProductServiceImpl extends ProductService {
-
-  private val productRepository = new ProductRepositoryImpl
+class ProductServiceImpl @Inject()(val productRepository: ProductRepository) extends ProductService {
 
   override def insert(productDTO: ProductDTO): BaseResponseDTO[ProductDTO] = {
     val product: Product = Product.dtoToProductMapper(productDTO)

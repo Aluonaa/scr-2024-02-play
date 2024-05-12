@@ -2,7 +2,7 @@ package controllers
 
 import com.google.inject.Inject
 import models.dto.ProductDTO
-import models.services.{ProductService}
+import models.services.ProductService
 import models.services.response.BaseResponseDTO
 import play.api.libs.json.Json
 import play.api.mvc.{Action, AnyContent}

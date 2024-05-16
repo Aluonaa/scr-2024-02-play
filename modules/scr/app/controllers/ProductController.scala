@@ -9,8 +9,8 @@ import play.api.mvc.{Action, AnyContent}
 
 class ProductController @Inject()(val productService: ProductService) extends Authorization {
 
-  def insert(): Action[ProductDTO] = Action(parse.json[ProductDTO]) { rc =>
-    val productDTO = rc.body
+  def insert(): Action[ProductDTO] = authorize(parse.json[ProductDTO]) { rc =>
+    val productDTO = rc.request.body
     val result: BaseResponseDTO[ProductDTO] = productService.insert(productDTO)
     Ok(Json.toJson(result))
   }

@@ -1,6 +1,6 @@
 package models.dto
 
-import models.ProductItem
+import models.dao.entities.ProductItem
 import play.api.libs.json.{Json, Reads, Writes}
 
 case class ProductItemDTO(id: String, price: Int, count: Int, availability: Boolean)

@@ -1,7 +1,7 @@
 package module
 
+import models.dao.repositories.{ProductRepository, ProductRepositoryImpl}
 import models.services.{ProductService, ProductServiceImpl}
-import repository.{ProductRepository, ProductRepositoryImpl}
 
 import scala.di.AppModule
 

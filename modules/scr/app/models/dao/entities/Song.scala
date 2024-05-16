@@ -1,6 +1,6 @@
 package models.dao.entities
 
-import org.squeryl.dsl.{ManyToMany, OneToMany}
+import org.squeryl.dsl.ManyToMany
 import org.squeryl.{KeyedEntity, Query, Schema}
 
 case class Author(id: String, name: String) extends KeyedEntity[String]{

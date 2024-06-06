@@ -23,10 +23,6 @@ class ProductServiceImpl @Inject()(val productRepository: ProductRepository) ext
     val product: Product = Product.dtoToProductMapper(productDTO)
     val productItems: List[ProductItem] = ProductItem.allDtoToProductItem(productDTO.items, product.id)
 
-//    def saveProductItems(productItems: List[ProductItem]) = productItems
-//      .filter(p => productRepository.findByIdProductItem(p.id).isEmpty)
-//      .map(p => productRepository.insert(p))
-
     def saveProductItems(productItems: List[ProductItem]) =
       for(x <- productItems
       if productRepository.findByIdProductItem(x.id).isEmpty)

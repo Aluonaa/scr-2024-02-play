@@ -1,0 +1,9 @@
+@(form: Form[(String, String)])(implicit lang: play.api.i18n.Lang)
+
+@main("Adding funds"){
+    @helper.form(action = routes.ProductController.addingFundsFormSubmit()){
+        @helper.inputText(form("email"))(views.fieldsConstructors.bFieldConstructor, lang)
+        @helper.inputText(form("money"))(views.fieldsConstructors.bFieldConstructor, lang)
+        <button type="submit" class="btn btn-primary">Add funds</button>
+    }
+}

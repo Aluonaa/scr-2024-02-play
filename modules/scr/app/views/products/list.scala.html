@@ -1,7 +1,18 @@
-
+@(products: List[models.dto.ProductDTO])
+@showProductDTO(i: models.dto.ProductDTO) = {
+    <li>@i.id @i.title @i.description</li>
+}
+@showProductItemDTO(p: models.dto.ProductItemDTO) = {
+    <li>@p.id @p.price @p.count @p.availability</li>
+}
 
 @main("Products list"){
     <ul>
-
+    @for(p <- products){
+        @showProductDTO(p)
+        @for(i <- p.items){
+            @showProductItemDTO(i)
+        }
+    }
     </ul>
 }

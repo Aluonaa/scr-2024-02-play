@@ -1,0 +1,11 @@
+@import models.dto.ProductDTO
+@(form: Form[ProductDTO])(implicit lang: play.api.i18n.Lang)
+
+@main("Insert product"){
+    @helper.form(action = routes.ProductController.insertFormSubmit()){
+        @helper.inputText(form("id"))(views.fieldsConstructors.bFieldConstructor, lang)
+        @helper.inputText(form("title"))(views.fieldsConstructors.bFieldConstructor, lang)
+        @helper.inputText(form("description"))(views.fieldsConstructors.bFieldConstructor, lang)
+        <button type="submit" class="btn btn-primary">Insert product</button>
+    }
+}

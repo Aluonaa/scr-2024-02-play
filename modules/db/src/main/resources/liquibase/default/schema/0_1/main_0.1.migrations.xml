@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                            http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+
+        <changeSet id="create Product table" author="astrelets">
+          <createTable tableName="Product">
+              <column name="id" type="text">
+                  <constraints primaryKey="true"/>
+              </column>
+              <column name="title" type="text">
+                  <constraints nullable="false"/>
+              </column>
+              <column name="description" type="text">
+                  <constraints nullable="false"/>
+              </column>
+          </createTable>
+        </changeSet>
+
+        
+        
+        <changeSet id="create ProductItem table" author="astrelets">
+          <createTable tableName="ProductItem">
+              <column name="id" type="text">
+                  <constraints primaryKey="true"/>
+              </column>
+              <column name="price" type="int">
+                <constraints nullable="false"/>
+              </column>
+              <column name="count" type="int">
+                <constraints nullable="false"/>
+              </column>
+              <column name="availability" type="boolean">
+                <constraints nullable="false"/>
+              </column>
+              <column name="productId" type="text">
+                  <constraints nullable="false"/>
+              </column>
+          </createTable>
+
+          <addForeignKeyConstraint baseColumnNames="productId"
+              baseTableName="ProductItem"
+              constraintName="fk_ProductItem_productId_Product_id"
+              referencedColumnNames="id"
+              referencedTableName="Product"/>
+        </changeSet>
+
+
+
+    <changeSet id="create Basket table" author="astrelets">
+        <createTable tableName="Basket">
+            <column name="id" type="text">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="accountId" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+
+    <changeSet id="create Account table" author="astrelets">
+        <createTable tableName="Account">
+            <column name="id" type="text">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="money" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+
+    <changeSet id="create AccountProduct table" author="astrelets">
+        <createTable tableName="AccountProduct">
+            <column name="id" type="text">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="productId" type="text">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="accountId" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="productId"
+                                 baseTableName="AccountProduct"
+                                 constraintName="fk_AccountProduct_productId_Product_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="Product"/>
+        <addForeignKeyConstraint baseColumnNames="accountId"
+                                 baseTableName="AccountProduct"
+                                 constraintName="fk_AccountProduct_accountId_Account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="Account"/>
+    </changeSet>
+
+    <changeSet id="create Purchase table" author="astrelets">
+        <createTable tableName="Purchase">
+            <column name="id" type="text">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="accountId" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="money" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseColumnNames="accountId"
+                                 baseTableName="Purchase"
+                                 constraintName="fk_Purchase_accountId_Account_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="Account"/>
+    </changeSet>
+
+
+
+
+
+</databaseChangeLog>
